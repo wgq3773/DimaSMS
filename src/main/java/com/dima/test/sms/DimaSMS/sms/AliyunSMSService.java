@@ -5,7 +5,6 @@ import java.util.Date;
 import org.apache.commons.lang.time.DateFormatUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.springframework.beans.factory.annotation.Value;
 
 import com.aliyuncs.DefaultAcsClient;
 import com.aliyuncs.IAcsClient;
@@ -37,12 +36,6 @@ public class AliyunSMSService {
     //产品域名,开发者无需替换
     static final String domain = "dysmsapi.aliyuncs.com";
     
-    @Value("${accessKeyId}")
-	private static String accessKeyId;
-	
-	@Value("${accessKeySecret}")
-	private static String accessKeySecret;
-
     /**
      * 发送短信
      * @param smsSendDTO
@@ -76,7 +69,7 @@ public class AliyunSMSService {
 
 		try {
 			// 初始化acsClient,暂不支持region化
-			IClientProfile profile = DefaultProfile.getProfile("cn-hangzhou", accessKeyId, accessKeySecret);
+			IClientProfile profile = DefaultProfile.getProfile("cn-hangzhou", smsSendDTO.getAccessKeyId(), smsSendDTO.getAccessKeySecret());
 			DefaultProfile.addEndpoint("cn-hangzhou", "cn-hangzhou", product, domain);
 			IAcsClient acsClient = new DefaultAcsClient(profile);
 

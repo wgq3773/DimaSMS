@@ -47,12 +47,20 @@ public class ScheduledSmsTasks {
 	@Value("${templateCode_auto_response}")
 	private String templateCode_auto_response;
 	
+	@Value("${accessKeyId}")
+	private static String accessKeyId;
+	
+	@Value("${accessKeySecret}")
+	private static String accessKeySecret;
+	
 	private int count = 0;
 	
 	// 定时任务，每天早上八点执行，发送早安短信
 	@Scheduled(cron = "0 0 10 * * ?")//临时：每天10点触发一次
 	public void goodMorning(){
 		SmsSendDTO smsSendDTO = new SmsSendDTO();
+		smsSendDTO.setAccessKeyId(accessKeyId);
+		smsSendDTO.setAccessKeySecret(accessKeySecret);
 		smsSendDTO.setOutId(CommonUtils.getUUID());
 		smsSendDTO.setPhoneNumbers(phoneNumbers);
 		smsSendDTO.setSignName(signName);
@@ -74,6 +82,8 @@ public class ScheduledSmsTasks {
 	@Scheduled(cron = "0 0 13 * * ?")
 	public void goodAfternoon() {
 		SmsSendDTO smsSendDTO = new SmsSendDTO();
+		smsSendDTO.setAccessKeyId(accessKeyId);
+		smsSendDTO.setAccessKeySecret(accessKeySecret);
 		smsSendDTO.setOutId(CommonUtils.getUUID());
 		smsSendDTO.setPhoneNumbers(phoneNumbers);
 		smsSendDTO.setSignName(signName);
@@ -96,6 +106,8 @@ public class ScheduledSmsTasks {
 	public void goodNight() {
 		SmsSendDTO smsSendDTO = new SmsSendDTO();
 		smsSendDTO.setOutId(CommonUtils.getUUID());
+		smsSendDTO.setAccessKeyId(accessKeyId);
+		smsSendDTO.setAccessKeySecret(accessKeySecret);
 		smsSendDTO.setPhoneNumbers(phoneNumbers);
 		smsSendDTO.setSignName(signName);
 		smsSendDTO.setTemplateCode(templateCode_good_night);
