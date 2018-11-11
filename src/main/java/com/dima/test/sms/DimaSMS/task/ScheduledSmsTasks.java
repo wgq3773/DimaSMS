@@ -48,15 +48,15 @@ public class ScheduledSmsTasks {
 	private String templateCode_auto_response;
 	
 	@Value("${accessKeyId}")
-	private static String accessKeyId;
+	private String accessKeyId;
 	
 	@Value("${accessKeySecret}")
-	private static String accessKeySecret;
+	private String accessKeySecret;
 	
 	private int count = 0;
 	
 	// 定时任务，每天早上八点执行，发送早安短信
-	@Scheduled(cron = "0 0 10 * * ?")//临时：每天10点触发一次
+	@Scheduled(cron = "0 0 8 * * ?")
 	public void goodMorning(){
 		SmsSendDTO smsSendDTO = new SmsSendDTO();
 		smsSendDTO.setAccessKeyId(accessKeyId);
@@ -87,7 +87,7 @@ public class ScheduledSmsTasks {
 		smsSendDTO.setOutId(CommonUtils.getUUID());
 		smsSendDTO.setPhoneNumbers(phoneNumbers);
 		smsSendDTO.setSignName(signName);
-		smsSendDTO.setTemplateCode(templateCode_good_morning);
+		smsSendDTO.setTemplateCode(templateCode_good_afternoon);
 		// 亲爱的${name}宝宝，上午过得好吗？到中午了，要休息一下哟，孔子说：中午不睡，下午崩溃。午安啦！ 可以在Dima微信公众号后台发送暗号：${code}获取一点惊喜哟！
 		JSONObject jsonObject = new JSONObject();
 		jsonObject.put("name", CommonUtils.getRandomNickNameFromProperties());

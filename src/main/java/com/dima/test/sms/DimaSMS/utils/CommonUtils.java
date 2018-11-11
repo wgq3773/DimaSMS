@@ -7,7 +7,7 @@ import org.apache.commons.lang.StringUtils;
 
 public class CommonUtils {
 
-	public static final String configFileName = "application.properties";
+	public static final String configFileName = "smsCommonSetting.properties";
 
 	public static String getUUID() {
 		return UUID.randomUUID().toString().replace("-", "");
