@@ -114,10 +114,10 @@ public class ScheduledSmsTasks {
 		}
 	}
 
-	//每30秒执行一次,初始延迟3秒开始执行
-	@Scheduled(fixedRate = 1000 * 30,initialDelay = 1000 * 10)
+	//每300秒执行一次,初始延迟10秒开始执行
+	@Scheduled(fixedRate = 1000 * 300,initialDelay = 1000 * 10)
 	public void reportCurrentByCron() {
-		log.info("每30秒执行一次定时任务，这是第" + ++count + "次执行，当前时间：" + DateFormatUtils.format(new Date(), "yyyy-MM-dd HH:mm:ss"));
+		log.info("每300秒执行一次定时任务，这是第" + ++count + "次执行，当前时间：" + DateFormatUtils.format(new Date(), "yyyy-MM-dd HH:mm:ss"));
 	}
 	
 	@SuppressWarnings("static-access")
